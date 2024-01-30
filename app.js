@@ -1,6 +1,8 @@
 const express = require('express');
-const cors=require('cors');
 const app = express();
+
+const cors=require('cors');
+
 const dotenv=require('dotenv');
 dotenv.config();
 
@@ -18,7 +20,9 @@ const User=require('./models/users');
 const userRoutes = require('./routes/userroute');
 
 
-
+app.use(cors({
+origin:"http://127.0.0.1:3000",
+}))
 
 
 

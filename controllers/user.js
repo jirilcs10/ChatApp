@@ -22,8 +22,9 @@ exports.signUp = async (req,res,next)=>{
 }
 catch(err)
 {
+    console.log(err);
     if(err.name==="SequelizeUniqueConstraintError")
-    res.status(840).json(err);
+    res.status(414).json(err);
     else
     res.status(505).json(err);
 }
