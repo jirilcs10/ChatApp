@@ -72,3 +72,20 @@ catch(err)
 }
 };
 
+exports.sendMessage= async (req,res,next)=>{
+  try{
+    const user=req.user;
+  const msg = req.body.msg;
+  if(msg){
+  const data=await user.createChat({
+    message:msg,
+  });
+  res.status(201).json({message:"Message saved successfully"});
+}
+}
+catch(err)
+{
+    console.log(err);
+    res.status(505).json(err);
+}
+};

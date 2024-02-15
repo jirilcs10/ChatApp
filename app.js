@@ -16,6 +16,7 @@ const sequelize=require('./util/databases');
 
 
 const User=require('./models/users');
+const Chat=require('./models/chat');
 
 const userRoutes = require('./routes/userroute');
 
@@ -28,8 +29,8 @@ origin:"http://127.0.0.1:3000",
 
 app.use(bodyParser.json({ extended: false }));
   
-// Expense.belongsTo(User,{constraints:true,onDelete:'CASCADE'});
-// User.hasMany(Expense);
+Chat.belongsTo(User,{constraints:true,onDelete:'CASCADE'});
+User.hasMany(Chat);
 
 // Order.belongsTo(User);
 // User.hasMany(Order);
@@ -54,6 +55,10 @@ app.use('/signup',(req,res)=>{
 // });
 app.use('/login',(req,res)=>{
     res.sendFile('login.html', { root: 'views' })
+});
+
+app.use('/main',(req,res)=>{
+    res.sendFile('front.html', { root: 'views' })
 });
 // app.get('/public/js/exp.js', function(req, res) {
 //     res.sendFile(path.join(__dirname + '/public/js/exp.js'));
